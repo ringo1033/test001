@@ -3,204 +3,354 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>まーじゃん | しんけん仮 | 初心者歓迎ノーレート雀荘</title>
+<title>麻雀 A&B | 初心者歓迎ノーレート雀荘</title>
+
+<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300;400;700&display=swap" rel="stylesheet">
 
 <style>
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Noto Sans JP', sans-serif;
     margin: 0;
-    background-color: #f5f5f5;
-    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #2b2b2b;
+    line-height: 1.8;
 }
 
-/* ヘッダー */
-header {
-    position: relative;
-    color: white;
-    text-align: center;
-}
-header img {
-    width: 100%;
-    height: 220px;
-    object-fit: cover;
-    filter: brightness(60%);
-}
-header .title {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-header h1 {
-    font-size: 24px;
-    margin: 0;
-}
-header p {
-    font-size: 14px;
-}
-
-/* ナビ */
+/* ===== ナビ ===== */
 nav {
-    background-color: #34495e;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
     display: flex;
-    flex-wrap: wrap;
-}
-nav a {
-    flex: 1 1 50%;
-    padding: 12px;
-    text-align: center;
-    color: white;
-    text-decoration: none;
-    border: 1px solid #2c3e50;
-    font-size: 14px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
 }
 
-/* セクション */
-section {
-    padding: 16px;
-    background-color: white;
-    margin: 10px;
-    border-radius: 8px;
-}
-h2 {
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-p, li {
-    font-size: 14px;
-}
-
-/* 画像 */
-.shop-img {
-    width: 100%;
-    border-radius: 8px;
-    margin-top: 10px;
-}
-
-/* ボタン */
-.cta {
+/* ロゴ */
+.logo img {
+    height: 50px;
+    width: auto;
     display: block;
-    text-align: center;
-    background-color: #27ae60;
-    color: white;
-    padding: 14px;
-    border-radius: 8px;
+}
+
+/* メニュー */
+.menu {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    color: #6aa7d8;
+    text-shadow: 0 2px 3px rgba(0,0,0,0.60);
     text-decoration: none;
-    margin-top: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    position: relative;
+    padding-bottom: 4px;
 }
 
-/* フッター */
-footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #2c3e50;
-    color: white;
-    font-size: 12px;
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #27ae60;
+    transition: width 0.25s ease;
 }
 
-/* PC表示 */
+nav a:hover::after {
+    width: 100%;
+}
+
+/* PCだけ固定 */
 @media (min-width: 768px) {
-
-    header img {
-        height: 350px;
-    }
-
-    header h1 {
-        font-size: 36px;
-    }
-
-    header p {
-        font-size: 18px;
-    }
-
     nav {
-        justify-content: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     }
 
     nav a {
-        flex: none;
-        padding: 15px 20px;
-    }
-
-    section {
-        max-width: 800px;
-        margin: 20px auto;
-        padding: 30px;
-    }
-
-    h2 {
-        font-size: 24px;
-    }
-
-    p, li {
         font-size: 16px;
     }
+}
+
+/* スマホ：縦並び */
+@media (max-width: 767px) {
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu {
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 10px;
+    }
+}
+
+/* ===== ヒーロー（新しい店内写真） ===== */
+.hero {
+    position: relative;
+    height: 55vh;
+    min-height: 380px;
+    background: url("https://ringo1033.github.io/test001/34165010_l.jpg") center/cover no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.30);
+}
+
+.hero-content {
+    position: relative;
+    text-align: center;
+    color: white;
+}
+
+.hero h1 {
+    font-size: 46px;
+    margin: 0;
+    letter-spacing: 1px;
+}
+
+.hero p {
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+/* ===== セクション ===== */
+section {
+    padding: 70px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* ===== 見出し ===== */
+h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+    color: #222;
+}
+
+/* ===== カードレイアウト ===== */
+.cards {
+    display: grid;
+    gap: 28px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 28px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+    transition: 0.25s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.card h3 {
+    font-size: 22px;
+    margin-bottom: 14px;
+    color: #27ae60;
+}
+
+/* ===== 画像カード ===== */
+.photo-card {
+    padding: 0;
+    overflow: hidden;
+}
+
+.photo-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.photo-card .inner {
+    padding: 24px;
+}
+
+/* ===== マップ ===== */
+.map-wrap {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+}
+
+.map-wrap iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* ===== ボタン ===== */
+.mail-btn {
+    display: inline-block;
+    padding: 14px 32px;
+    background: #27ae60;
+    color: #fff;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 17px;
+    transition: 0.25s ease;
+}
+
+.mail-btn:hover {
+    background: #1f8e50;
+    transform: translateY(-2px);
+}
+
+/* ===== フッター ===== */
+footer {
+    text-align: center;
+    padding: 20px;
+    background: #27ae60;
+    color: white;
+    margin-top: 60px;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-    <img src="https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5">
-    <div class="title">
-        <h1>まーじゃん</h1>
-        <h1>しん＆けん</h1>
-        <p>初心者歓迎！ノーレート雀荘</p>
-    </div>
-</header>
-
+<!-- ナビ -->
 <nav>
-    <a href="#安心">安心ポイント</a>
-    <a href="#流れ">初めての流れ</a>
-    <a href="#雰囲気">雰囲気</a>
-    <a href="#料金">料金</a>
-    <a href="#アクセス">アクセス</a>
-    <a href="#FAQ">FAQ</a>
+    <div class="logo">
+        <img src="https://ringo1033.github.io/test001/logo_Copilot_20260426_3.png" alt="麻雀 A&B ロゴ">
+    </div>
+    <div class="menu">
+        <a href="#紹介">当店の紹介</a>
+        <a href="#安心">安心ポイント</a>
+        <a href="#流れ">入店からの流れ</a>
+        <a href="#雰囲気">当店の雰囲気</a>
+        <a href="#料金">料金システム</a>
+        <a href="#アクセス">アクセス</a>
+        <a href="#問い合わせ">問い合わせ</a>
+    </div>
 </nav>
 
-<section>
-    <h2>はじめての方でも安心して楽しめます</h2>
-    <p>
-        ルールがわからなくても大丈夫！<br>
-        スタッフが丁寧にサポートします。
-    </p>
+<!-- ヒーロー（新しい店内写真） -->
+<div class="hero">
+    <div class="hero-content">
+        <h1>麻雀 A&B</h1>
+        <p>初心者歓迎のノーレート雀荘</p>
+    </div>
+</div>
+<section id="紹介">
+    <h2>当店の紹介</h2>
+    <p style="text-align:center;">「麻雀って難しそう…」「やっぱりイメージが…」そんな不安を感じる方でも、安心して来ていただけるお店です。<br>
+明るく清潔な店内で、初めての方でも自分のペースでゆっくり楽しめます。<br>
+ルールがわからなくても心配いりません。<br>
+“覚えたい”“楽しみたい”という気持ちに寄り添いながら、スタッフが丁寧にサポートします。<br>
+やさしい雰囲気の中で、気軽に麻雀を始めてみませんか。</p> 
 </section>
 
 <section id="安心">
-    <h2>安心ポイント</h2>
-    <ul>
-        <li>ノーレートで安心</li>
-        <li>スタッフが丁寧に説明</li>
-        <li>初心者同士で打てる卓あり</li>
-        <li>ゆっくり進行OK</li>
-    </ul>
-</section>
+    <h2>６つの安心ポイント</h2>
+    <div class="cards">
+        <div class="card">
+            <h3>１.ノーレートだから安心</h3>
+            <p>お金を賭けないので、初心者でも気軽に楽しめます。</p>
+        </div>
+        <div class="card">
+            <h3>２.スタッフが丁寧に説明</h3>
+            <p>ルールがわからなくても、スタッフが優しくサポートします。</p>
+        </div>
+        <div class="card">
+            <h3>３.初心者卓あり</h3>
+            <p>同じレベルの方とゆっくり遊べる初心者卓をご用意。</p>
+        </div>
+        <div class="card">
+            <h3>４.ゆっくり進行OK</h3>
+            <p>焦って打つ必要はありません、自分のペースで楽しめます。</p>
+        </div>
+<div class="card">
+            <h3>５.点数計算できなくてもOK</h3>
+            <p>点数計算が不安だったり、できなくても大丈夫！スタッフがサポートします！</p>
+        </div>
+<div class="card">
+            <h3>６.全卓禁煙</h3>
+            <p>たばこの匂いが気になる、そんな方も安心して遊べます。</p>
+        </div>
 
-<section id="流れ">
-    <h2>ご来店の流れ</h2>
-    <ol>
-        <li>受付で「初めてです」とお伝えください</li>
-        <li>ルール説明を行います</li>
-        <li>初心者卓へご案内</li>
-        <li>楽しくプレイ！</li>
-    </ol>
+    </div>
 </section>
 
 <section id="雰囲気">
     <h2>お店の雰囲気</h2>
-    <p>明るく落ち着いた空間で、安心して楽しめます。</p>
-    <img class="shop-img" src="https://images.unsplash.com/photo-1599058917765-a780eda07a3e">
+    <div class="cards">
+        <div class="card photo-card">
+            <img src="https://images.unsplash.com/photo-1599058917765-a780eda07a3e" alt="">
+            <div class="inner">
+                <p>明るく落ち着いた店内で、ゆったりと麻雀を楽しめます。</p>
+            </div>
+        </div>
+        <div class="card photo-card">
+            <img src="https://images.unsplash.com/photo-1606092195730-5d7b9af1efc5" alt="">
+            <div class="inner">
+                <p>清潔感のある空間で、初めての方でも安心。</p>
+            </div>
+        </div>
+    </div>
 </section>
 
 <section id="料金">
     <h2>料金</h2>
-    <p>1ゲーム 500円（追加料金なし）</p>
+    <div class="cards">
+        <div class="card">
+            <h3>1ゲーム</h3>
+            <p>500円</p>
+        </div>
+    </div>
 </section>
 
 <section id="アクセス">
     <h2>アクセス</h2>
-    <p>
-        東京都板橋区大山東町18-1 B1階<br>
-        大山駅 徒歩1分
+    <p style="text-align:center;">東京都板橋区大山町4-1</p>
+
+    <div class="map-wrap">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.0911756847217!2d139.70228369999998!3d35.7485637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601892b9ecd74167%3A0xc451c8ba77fc6c05!2z5aSn5bGx6aeF!5e0!3m2!1sja!2sjp!4v1777204486672!5m2!1sja!2sjp"
+        loading="lazy"></iframe>
+    </div>
+</section>
+
+<section id="問い合わせ">
+    <h2>問い合わせ</h2>
+    <p style="text-align:center;">予約・問い合わせはこちらから。</p>
+    <p style="text-align:center;">
+        <a class="mail-btn" href="mailto:example@example.com">メールはこちら</a>
     </p>
+</section>
+
+<footer>
+    © 2026 麻雀 A&B
+</footer>
+
+</body>
+</html>
