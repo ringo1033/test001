@@ -338,15 +338,46 @@ footer {
     </div>
 </section>
 
-<section id="アクセス">
-    <h2>アクセス</h2>
-    <p style="text-align:center;">東京都板橋区大山町4-1</p>
+<h1>ランキング</h1>
+<ul id="ranking"></ul>
 
-    <div class="map-wrap">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3238.0911756847217!2d139.70228369999998!3d35.7485637!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601892b9ecd74167%3A0xc451c8ba77fc6c05!2z5aSn5bGx6aeF!5e0!3m2!1sja!2sjp!4v1777204486672!5m2!1sja!2sjp"
-        loading="lazy"></iframe>
-    </div>
-</section>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script>
+const supabaseUrl = 'https://lfaldubbsvvndymeveok.supabase.co';
+const supabaseKey = 'sb_publishable_VERAJLcNy-2AobFmaaNDVQ_lc6Hcdzx';
+const client = supabase.createClient(supabaseUrl, supabaseKey);
+
+async function loadRanking() {
+  const { data, error } = await client
+    .from('scores')
+    .select(`
+      score,
+      players ( name )
+    `)
+    .order('score', { ascending: false });
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  const list = document.getElementById('ranking');
+  list.innerHTML = '';
+
+  data.forEach((row, index) => {
+    list.innerHTML += `
+      <li>
+        ${index + 1}位：${row.players.name}（${row.score}）
+      </li>
+    `;
+  });
+}
+
+loadRanking();
+</script>
+
+</body>
+</html>
 
 <section id="問い合わせ">
     <h2>問い合わせ</h2>
